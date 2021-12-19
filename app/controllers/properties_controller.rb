@@ -5,12 +5,14 @@ class PropertiesController < ApplicationController
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @title = 'All Properties'
+    @properties = Property.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /properties/1 or /properties/1.json
   def show
     @agent = @property.account
+    @title = @property.name
   end
 
   # GET /properties/new
@@ -31,7 +33,7 @@ class PropertiesController < ApplicationController
   def save_and_show_property
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to properties_path, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,11 +57,8 @@ class PropertiesController < ApplicationController
 
   # DELETE /properties/1 or /properties/1.json
   def destroy
+    @id = @property.id
     @property.destroy
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

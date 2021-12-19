@@ -3,9 +3,7 @@
         <%= property_thumbnail(property) %>
         <h2> <%= property.name %> </h2>
         <p>
-            <%= link_to 'View Detail', property_path(property) %>
-            <%# <a class="btn btn-secondary" href="#" role="button">View details »
-            </a> %>
+            <%= link_to 'View Detail', property_path(property), class:"btn btn-info" %>
         </p>
     </div>
 <% end %>

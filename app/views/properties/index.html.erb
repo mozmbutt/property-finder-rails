@@ -17,19 +17,27 @@
 
     <tbody>
       <% @properties.each do |property| %>
-        <tr>
+        <tr id="<%= property.id %>">
           <td><%= property.name %></td>
           <td><%= property.address %></td>
           <td><%= property.price %></td>
           <td><%= property.rooms %></td>
           <td><%= property.bathrooms %></td>
-          <td><%= link_to 'Show', property %></td>
-          <td><%= link_to 'Edit', edit_property_path(property) %></td>
-          <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', property, class:"btn btn-info" %></td>
+          <td><%= link_to 'Edit', edit_property_path(property), class:"btn btn-warning" %></td>
+          <td>
+              <p class="destroy-property btn btn-danger">
+                Destroy
+              </p>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+  <div class="digg_pagination">
+    <%= will_paginate @properties %>
+  </div>
 </div>
 <br>
 

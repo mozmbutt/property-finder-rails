@@ -14,3 +14,29 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+    //show property
+    $(".show-property").on('click ', function() {
+        $.ajax({
+            url: "/properties/" + this.parentElement.parentElement.id,
+            type: 'GET'
+        })
+    })
+
+    //edit property
+    $(".edit-property").on('click ', function() {
+        $.ajax({
+            url: "/properties/" + this.parentElement.parentElement.id + '/edit',
+            type: 'GET'
+        })
+    })
+
+    //destory property
+    $(".destroy-property").on('click ', function() {
+        $.ajax({
+            url: "/properties/" + this.parentElement.parentElement.id,
+            type: 'DELETE'
+        })
+    })
+})
