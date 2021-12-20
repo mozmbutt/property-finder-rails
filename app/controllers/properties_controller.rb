@@ -6,7 +6,7 @@ class PropertiesController < ApplicationController
   # GET /properties or /properties.json
   def index
     @title = 'All Properties'
-    @properties = Property.paginate(page: params[:page], per_page: 3)
+    @properties = Property.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /properties/1 or /properties/1.json
@@ -33,6 +33,7 @@ class PropertiesController < ApplicationController
   def save_and_show_property
     respond_to do |format|
       if @property.save
+        PropertyMailer.with(account: current_account, property: @property).property_created.deliver_later
         format.html { redirect_to properties_path, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else

@@ -1,0 +1,18 @@
+<h1><%= @greeting %></h1>
+
+<p>
+  <%= @account.first_name %>, created a new property.
+</p>
+
+<h1>Property Informations are bellow</h1>
+
+<h1>Name</h1>
+<p><%= @property.name %></p>
+
+<h1>Price</h1>
+<p><%= @property.price %></p>
+
+<h1>Location</h1>
+<p><%= @property.address %></p>
+
+<%= image_tag(@property.photo) %>
