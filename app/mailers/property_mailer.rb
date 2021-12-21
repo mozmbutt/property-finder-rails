@@ -14,7 +14,7 @@ class PropertyMailer < ApplicationMailer
     attachments[photo.filename.to_s] = photo.download
 
     mail(
-      to: Account.first.email,
+      to: @account.email,
       cc: 'mozmbutt8@gmail.com',
       subject: 'New Post Created'
     )

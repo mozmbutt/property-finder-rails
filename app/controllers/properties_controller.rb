@@ -33,7 +33,7 @@ class PropertiesController < ApplicationController
   def save_and_show_property
     respond_to do |format|
       if @property.save
-        PropertyMailer.with(account: current_account, property: @property).property_created.deliver_later
+        PropertyJob.set(wait: 15.seconds).perform_later(@property, current_account)
         format.html { redirect_to properties_path, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
