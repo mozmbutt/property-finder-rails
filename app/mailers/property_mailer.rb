@@ -16,7 +16,7 @@ class PropertyMailer < ApplicationMailer
     mail(
       to: @account.email,
       cc: 'mozmbutt8@gmail.com',
-      subject: 'New Post Created'
+      subject: 'New Property Created'
     )
   end
 end
